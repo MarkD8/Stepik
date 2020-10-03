@@ -134,15 +134,15 @@ def additemtocart():
     # 2) Перейти в раздел "Books".
     browser.find_element_by_css_selector("#browse .dropdown-submenu > [tabindex='-1'] ").click()
 
-    # 3-4) Найти первый на странице товар и добавить его в корзину.
+    # 3) Найти первый на странице товар и добавить его в корзину.
     element = browser.find_element_by_css_selector("[title='Coders at Work']").parent
     button = element.c
-
+    # 4) Добавить товар в корзину.
     button1 = browser.find_element_by_css_selector(".btn-primary")
     button1.click()
 
     # Результат: Товар добавлен в корзину, появляется сообщение, что книга добавлена в корзину.
-    message = browser.find_element_by_css_selector("#messages .alertinner:first-of-type")
+    message = browser.find_element_by_css_selector("#messages div.alertinner:first-of-type")
     assert "добавлен в вашу корзину" in message.text
 
 
@@ -173,6 +173,7 @@ try:
     additemtocart()
 
 finally:
-    time.sleep(3)
+    # успеваем скопировать код за 30 секунд
+    time.sleep(30)
     # закрываем браузер после всех манипуляций
     browser.quit()
