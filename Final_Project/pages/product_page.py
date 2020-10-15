@@ -3,6 +3,10 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def __init__(self, *args, **kwargs):
+        super(ProductPage, self).__init__(*args, **kwargs)
+        self.url = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+
     def add_product_to_basket(self):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BTN).click()
 
